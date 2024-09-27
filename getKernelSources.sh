@@ -1,7 +1,29 @@
 #!/bin/bash
-# Get the kernel source for NVIDIA Jetson Developer Kit
+###########################
+# ORIGINAL LICENSE NOTICE #
+###########################
+# Make kernel modules for NVIDIA Jetson Developer Kit
 # Copyright (c) 2016-21 Jetsonhacks 
 # MIT License
+######################
+# NEW LICENSE NOTICE #
+######################
+# This file is part of the jetson-linux-build distribution
+# (https://github.com/peads/jetson-linux-build).
+# Copyright (c) 2024 Patrick Eads.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, version 3.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
 
 # Install the kernel source for L4T
 source scripts/jetson_variables
@@ -11,7 +33,7 @@ echo "$JETSON_MACHINE"
 #Print Jetpack version
 echo "Jetpack $JETSON_JETPACK [L4T $JETSON_L4T]"
 SOURCE_TARGET="/usr/src/"
-KERNEL_RELEASE=$( uname -r | cut -d. -f1-2) # e.g. 4.9
+KERNEL_RELEASE=$(./scripts/findKernelRelease.sh)
 
 LAST="${SOURCE_TARGET: -1}"
 if [ $LAST != '/' ] ; then
