@@ -1,7 +1,4 @@
 #!/bin/bash
-######################
-# NEW LICENSE NOTICE #
-######################
 # This file is part of the jetson-linux-build distribution
 # (https://github.com/peads/jetson-linux-build).
 # Copyright (c) 2024 Patrick Eads.

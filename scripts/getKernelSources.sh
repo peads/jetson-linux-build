@@ -1,10 +1,33 @@
 #!/bin/bash
-# Get the kernel source for NVIDIA Jetson Developer Kit
+###########################
+# ORIGINAL LICENSE NOTICE #
+###########################
+# Make kernel modules for NVIDIA Jetson Developer Kit
 # Copyright (c) 2016-21 Jetsonhacks 
 # MIT License
+######################
+# NEW LICENSE NOTICE #
+######################
+# This file is part of the jetson-linux-build distribution
+# (https://github.com/peads/jetson-linux-build).
+# Copyright (c) 2024 Patrick Eads.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, version 3.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
 
 # Table of the URLs to Kernel Sources for Jetson Nano, Nano 2GB and TX1
 # L4T Driver Package [BSP] Sources - Code 210
+
 declare -A source_url_list_210=( 
   
   ["32.7.4"]="https://developer.nvidia.com/embedded/l4t/r32_release_v7.4/sources/t210/public_sources.tbz2"
@@ -92,12 +115,13 @@ if [ $SOURCE_URL = "" ] ; then
   exit 1
 fi
 
-apt-add-repository universe
-apt-get update
-apt-get install pkg-config -y
-# We use 'make menuconfig' to edit the .config file; install dependencies
-apt-get install libncurses5-dev -y
-
+if [[ -z $(command -v apt-get) ]] 
+    apt-add-repository universe
+    apt-get update
+    apt-get install pkg-config -y
+    # We use 'make menuconfig' to edit the .config file; install dependencies
+    apt-get install libncurses5-dev -y
+fi
 # A release version is typically something like: 4.9.253-tegra
 # We gather the local version (anything after the release numbers, starting with the '-') to
 # set the local version for the kernel build process.
