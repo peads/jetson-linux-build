@@ -47,4 +47,4 @@ if [ ! -d "$PROPOSED_SRC_PATH" ]; then
 fi
 
 cd "$PROPOSED_SRC_PATH"
-sudo make menuconfig
+sudo make menuconfig 
